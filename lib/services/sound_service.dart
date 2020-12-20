@@ -15,9 +15,11 @@ class SoundService {
     _soundpool = Soundpool();
   }
 
-  loadSound() async {
+  loadSound(newVolume) async {
     var asset = await rootBundle.load("assets/music/chiller.mp3");
     _soundId = await _soundpool.load(asset);
+    _soundpool.setVolume(soundId: _soundId, volume: newVolume.toDouble() / 100);
+    await _soundpool.play(_soundId);
   }
 
   Future<void> disposePool() async {
@@ -26,6 +28,13 @@ class SoundService {
 
   Future<void> playSound() async {
     // var _alarmSound = await _soundId;
+    await _soundpool.play(_soundId);
+  }
+
+  Future<void> updateVolume(int newVolume) async {
+    var _cheeringSound = _soundId;
+    _soundpool.setVolume(
+        soundId: _cheeringSound, volume: newVolume.toDouble() / 100);
     await _soundpool.play(_soundId);
   }
 }

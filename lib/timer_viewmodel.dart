@@ -28,7 +28,9 @@ class StreamTimerViewModel extends StreamViewModel<String> {
       // debugPrint("Period finished");
       locator<SoundService>().playSound();
     });
-    locator<SoundService>().loadSound();
+    locator<SoundService>().loadSound(locator<SettingsService>().soundVolume);
+    // locator<SoundService>()
+    //     .updateVolume(locator<SettingsService>().soundVolume);
     super.initialise();
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_timer/app/locator.dart';
 import 'package:simple_timer/services/settings_service.dart';
+import 'package:simple_timer/services/sound_service.dart';
 import 'package:simple_timer/services/time_service.dart';
 import 'package:stacked/stacked.dart';
 
@@ -44,5 +45,13 @@ class SettingsViewModel extends ReactiveViewModel {
   void downValue() {
     locator<SettingsService>().countSecond =
         locator<SettingsService>().countSecond - 60;
+  }
+
+  int get soundVolume => locator<SettingsService>().soundVolume;
+
+  set soundVolume(int newVolume) {
+    locator<SettingsService>().soundVolume = newVolume;
+    locator<SoundService>().updateVolume(newVolume);
+    locator<SettingsService>().saveSettins();
   }
 }

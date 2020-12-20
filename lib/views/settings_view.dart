@@ -9,6 +9,7 @@ class SettingsView extends StatelessWidget {
   const SettingsView({Key key}) : super(key: key);
 
   static const String TIME_TITLE = "Интервал, мин";
+  static const String VOLUME_TITLE = "Громкость";
 
   static const double BORDER_WIDTH = 2;
   static const int BORDER_COLOR = 0xff000000;
@@ -109,7 +110,19 @@ class SettingsView extends StatelessWidget {
                           //   ), // This trailing comma makes auto-formatting nicer for build methods.
                           // )
                         ])
-                  ])
+                  ]),
+              SizedBox(height: 40),
+              Text(VOLUME_TITLE, textAlign: TextAlign.left, style: _style),
+              Slider(
+                value: model.soundVolume.toDouble(),
+                min: 0,
+                max: 100,
+                divisions: 5,
+                label: model.soundVolume.toString(),
+                onChanged: (double newVolume) {
+                  model.soundVolume = newVolume.round();
+                },
+              )
             ],
           )),
     );
