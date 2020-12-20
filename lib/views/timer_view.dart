@@ -12,6 +12,9 @@ class TimerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<StreamTimerViewModel>.reactive(
       viewModelBuilder: () => StreamTimerViewModel(),
+      //onModelReady: (model) => model.initialise(),
+      //disposeViewModel: false,
+      //initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => Container(
           child: Center(
               child: Column(
@@ -26,15 +29,15 @@ class TimerView extends StatelessWidget {
             width: 300,
             height: 300,
             child: FloatingActionButton(
-              onPressed: model.changeState,
+              onPressed: model.changeTimerState,
               child: Text(
-                '${model.titleState}',
+                '${model.titleState ?? "Старт"}',
                 style: TextStyle(fontSize: 60),
               ),
             ), // This trailing comma makes auto-formatting nicer for build methods.
           ),
           Text(
-            '${model.balance}',
+            '${model.data ?? "0.0"}',
             style: TextStyle(fontSize: 70),
           ),
         ],

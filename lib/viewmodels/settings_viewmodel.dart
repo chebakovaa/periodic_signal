@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_timer/app/locator.dart';
 import 'package:simple_timer/services/settings_service.dart';
+import 'package:simple_timer/services/time_service.dart';
 import 'package:stacked/stacked.dart';
 
 class SettingsViewModel extends ReactiveViewModel {
@@ -14,6 +15,8 @@ class SettingsViewModel extends ReactiveViewModel {
         text: (_service.countSecond / 60).round().toString());
     _timeController.addListener(() {
       _service.countSecond = int.parse(_timeController.value.text) * 60;
+      locator<TimeService>().doUpdate();
+      locator<SettingsService>().saveSettins();
     });
     _service.addListener(() {
       _timeController.text = (_service.countSecond / 60).round().toString();
@@ -24,7 +27,7 @@ class SettingsViewModel extends ReactiveViewModel {
 
   @override
   dispose() {
-    locator<SettingsService>().saveSettins();
+    // locator<SettingsService>().saveSettins();
     _timeController.dispose();
     super.dispose();
   }
