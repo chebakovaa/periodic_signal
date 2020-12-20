@@ -117,7 +117,7 @@ class SettingsView extends StatelessWidget {
                 value: model.soundVolume.toDouble(),
                 min: 0,
                 max: 100,
-                divisions: 5,
+                divisions: 20,
                 label: model.soundVolume.toString(),
                 onChanged: (double newVolume) {
                   model.soundVolume = newVolume.round();
