@@ -10,7 +10,7 @@ class SettingsView extends StatelessWidget {
 
   static const String TIME_TITLE = "Интервал, мин";
   static const String VOLUME_TITLE = "Громкость";
-
+  static const String SOUNDFILE_TITLE = "Сменить звук";
   static const double BORDER_WIDTH = 2;
   static const int BORDER_COLOR = 0xff000000;
   static const double BORDER_RADIUS = 6.0;
@@ -122,7 +122,12 @@ class SettingsView extends StatelessWidget {
                 onChanged: (double newVolume) {
                   model.soundVolume = newVolume.round();
                 },
-              )
+              ),
+              SizedBox(height: 40),
+              FlatButton(
+                  onPressed: model.changeSound,
+                  child: Text(SOUNDFILE_TITLE,
+                      textAlign: TextAlign.left, style: _style))
             ],
           )),
     );

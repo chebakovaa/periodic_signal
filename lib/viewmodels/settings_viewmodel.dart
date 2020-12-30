@@ -54,4 +54,16 @@ class SettingsViewModel extends ReactiveViewModel {
     locator<SoundService>().updateVolume(newVolume);
     locator<SettingsService>().saveSettins();
   }
+
+  Future<void> changeSound() async {
+    // FilePickerResult result = await FilePicker.platform.pickFiles(
+    //   type: FileType.custom,
+    //   allowedExtensions: ['mp3'],
+    // );
+    // if (result != null) {
+    //   File file = File(result.files.single.path);
+    // } else {
+    //   // User canceled the picker
+    // }
+  }
 }
